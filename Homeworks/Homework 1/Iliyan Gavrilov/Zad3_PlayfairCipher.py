@@ -142,10 +142,9 @@ elif(encrypt_or_decrypt == "decrypt"):
     for i in range(0,len(message),2):
         if(i < len(message) - 1):
             word_with_j.append(decrypt(matrix, message[i], message[i+1]))
-    if("J" in word_with_j):
-        print(" or ", end = '')
-        for i in range(len(word_with_j)):
-            print(word_with_j[i][0], end = '')
-            print(word_with_j[i][1], end = '')
+    print(" or ", end = '')
+    for i in range(len(word_with_j)):
+        print(word_with_j[i][0], end = '')
+        print(word_with_j[i][1], end = '')
 else:
     print("'" + encrypt_or_decrypt + "' is not valid! Choose either 'encrypt' or 'decrypt'")
