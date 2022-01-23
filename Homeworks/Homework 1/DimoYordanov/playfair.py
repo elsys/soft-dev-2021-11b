@@ -20,7 +20,7 @@ def is_rectangle(p,p2):
 def is_line(p,p2):
     return (p[0]==p2[0] or p[1]==p2[1]),[p[0]==p2[0],p[1]==p2[1]]
 def val_to_x_y(p):
-    return [int(p/5),(p-int(p/5))]
+    return [int(p/5),p%5]
 def calculate_line(srichka,X):
     a = val_to_x_y(k.index(srichka[0]))
     b = val_to_x_y(k.index(srichka[1]))
@@ -35,14 +35,11 @@ def calculate_line(srichka,X):
 def calculate_square(srichka):
     a = srichka[0]
     b = srichka[1]
-    print(a,b)
     a = val_to_x_y(k.index(a))
     b = val_to_x_y(k.index(b))
-    print(a,b)
     x = a[1]
     a[1] = b[1]
     b[1] = x
-    print(a,b)
     return "".join([k1[a[0]][a[1]],k1[b[0]][b[1]]])
 def calculate(char1,char2):
     if is_line(val_to_x_y(k.index(char1)),val_to_x_y(k.index(char2)))[0]:
