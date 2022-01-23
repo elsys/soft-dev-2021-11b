@@ -1,5 +1,3 @@
-from psutil import swap_memory
-
 
 k = [
     "T",	"U",	"E",	"S",	"A",
@@ -57,6 +55,10 @@ list_duma = list(duma)
 flag = len(list_duma)%2==1
 if(flag):
     list_duma.append("X")
+x = []
 for i in range(int(len(list_duma)/2+0.5)):
-    print(calculate(list_duma[i*2],list_duma[i*2+1]))
-print(list_duma)
+    x.append(calculate(list_duma[i*2],list_duma[i*2+1]))
+
+print("".join(x))
+
+
