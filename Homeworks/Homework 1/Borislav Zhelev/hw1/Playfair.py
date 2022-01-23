@@ -96,17 +96,66 @@ def encryption (plainText,key):
         i += 2  
     return cipherText
 
+def decryption (plainText,key):
+    cipherText = []
+    keyMatrix = generateKeyMatrix(key)
+
+    i = 0
+    while i < len(plainText):
+
+        n1 = indexLocator(plainText[i],keyMatrix)
+        n2 = indexLocator(plainText[i+1],keyMatrix)
+
+        if n1[1] == n2[1]:
+            i1 = (n1[0] - 1) % 5
+            j1 = n1[1]
+
+            i2 = (n2[0] - 1) % 5
+            j2 = n2[1]
+            cipherText.append(keyMatrix[i1][j1])
+            cipherText.append(keyMatrix[i2][j2])
+            
+        elif n1[0]==n2[0]:
+            i1= n1[0]
+            j1= (n1[1] - 1) % 5
+
+
+            i2= n2[0]
+            j2= (n2[1] - 1) % 5
+            cipherText.append(keyMatrix[i1][j1])
+            cipherText.append(keyMatrix[i2][j2])
+
+        else:
+            i1 = n1[0]
+            j1 = n1[1]
+
+            i2 = n2[0]
+            j2 = n2[1]
+
+            cipherText.append(keyMatrix[i1][j2])
+            cipherText.append(keyMatrix[i2][j1])
+
+        i += 2  
+    return cipherText
+
+
 def main():
 
     key = "TUES"
     """key = input("Enter key: ").replace(" ","").upper()"""
+    option = input("Select Encryption or Decryptio: (E/D)").upper()
     plainText =input("Plain Text: ").replace(" ","").upper()
 
     convertedPlainText = convertPlainTextToDiagraphs(plainText)
-    
-    cipherText = " ".join(encryption(convertedPlainText,key))
-    print(cipherText)
 
+    if option == 'E':
+        cipherText = "".join(encryption(convertedPlainText,key))
+        print(cipherText)
+    elif option == 'D':
+        cipherText = "".join(decryption(convertedPlainText,key))
+        print(cipherText)
+    else:
+        print("You failed an easy question!!")
 
 if __name__ == "__main__":
     main()
